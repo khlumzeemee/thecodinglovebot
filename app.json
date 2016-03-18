@@ -1,5 +1,5 @@
 {
   "name": "TheCodingLove",
   "description": "See a random post from thecodinglove.com website in slack!",
-  "repository": "https://github.com/khlumzeemee/thecodinglove",
+  "repository": "https://github.com/khlumzeemee/thecodinglovebot",
   "keywords": ["python", "slack", "code","love","coding","thecodinglove","codinglove"]

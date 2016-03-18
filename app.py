@@ -8,7 +8,6 @@ import os
 import urllib
 from flask import Flask, Response, jsonify, request
 from bs4 import BeautifulSoup
-from slackclient import SlackClient
 
 app = Flask(__name__)
 
@@ -16,25 +15,26 @@ TOKEN = 'QvdxLn8OjvvkrA0DgRRzCh8X'
 THECODINGLOVE_BOT_DEBUG = True
 THECODEINGLOVE_URI = "http://www.thecodinglove.com/random"
 
-@app.route('/thecodinglove', methods=['POST', 'GET'])
+@app.route('/thecodinglove', methods=['POST'])
 def thecodinglove():
-    #For get method tests only
-    if request.method == 'GET':
-        resp = get_post()
-        return Response(str(resp))
-    elif request.form['token'] != TOKEN:
+
+    if request.form['token'] != TOKEN:
         return Response("Invalid token")
     
     post = get_post()
     
-    if post:    
+    if post:
+        json_response = {}
         caption = post.div.h3.string
         gif_url = post.img["src"]
         
+        json_response["text"] = "The Coding Love"
+        attachment = []
+        attachment.append({"text":caption, "image_url":gif_url})
+        json_response["attachments"] = attachment
+                
         #sc = SlackClient(TOKEN)
-        return jsonify(text="The Coding Love",
-                       attachment_text=caption, 
-                       image_url=gif_url)
+        return jsonify(**json_response)
         
     #Default
     return Response()
