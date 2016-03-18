@@ -30,7 +30,7 @@ def thecodinglove():
         
         json_response["text"] = "The Coding Love"
         attachment = []
-        attachment.append({"text":caption, "image_url":gif_url})
+        attachment.append({"title":caption, "image_url":gif_url})
         json_response["attachments"] = attachment
                 
         #sc = SlackClient(TOKEN)
