@@ -48,7 +48,10 @@ def get_post():
         return soup.find(id="post1")
     return None
 
-
+@app.route('/', methods=['GET'])
+def index():
+    return str(get_post())
+    
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=THECODINGLOVE_BOT_DEBUG)
